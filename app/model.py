@@ -5,6 +5,7 @@ from sqlalchemy.sql.sqltypes import TIMESTAMP
 from sqlalchemy.types import Date, Time
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import ARRAY
+from sqlalchemy.schema import Sequence
 
 
 
@@ -24,11 +25,12 @@ class Chat(Base):
 
 class Message(Base):
     __tablename__ ='message'
-    id = Column(Integer, primary_key=True, nullable=False)
+    id = Column(Integer, Sequence('message_id_seq'), primary_key=True)
     sender = Column(String, nullable=False)
     receiver = Column(String, nullable=False)
     message = Column(String, nullable=False)
     chat_id = Column(Integer, primary_key=True, nullable=False)
+    created_at = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text( 'NOW()') )
 
 
 

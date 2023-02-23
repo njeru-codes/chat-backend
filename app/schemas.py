@@ -15,6 +15,15 @@ class NewChat(BaseModel):
     class Config:
         orm_mode = True
 
+
+class NewMessage(BaseModel):
+    sender: EmailStr
+    receiver: EmailStr
+    message: str
+    chat_id: int
+    class Config:
+        orm_mode = True
+
     
 
 
