@@ -4,6 +4,7 @@ from sqlalchemy.sql.expression import text
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 from sqlalchemy.types import Date, Time
 from sqlalchemy.orm import relationship
+from sqlalchemy.dialects.postgresql import ARRAY
 
 
 
@@ -18,8 +19,7 @@ class User(Base):
 class Chat(Base):
     __tablename__ ='chat'
     id = Column(Integer, primary_key=True, nullable=False)
-    user = Column(String, nullable=False)
-    user2 = Column(String, nullable=False)
+    users = Column(ARRAY(String) )
     created_at = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text( 'NOW()') )
 
 class Message(Base):

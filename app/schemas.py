@@ -9,6 +9,14 @@ class User(BaseModel):
     class Config:
         orm_mode = True
 
+class NewChat(BaseModel):
+    user2: EmailStr
+    user: EmailStr #the one creating a chat
+    class Config:
+        orm_mode = True
+
+    
+
 
 class NewUserResponse(BaseModel):
     email: EmailStr

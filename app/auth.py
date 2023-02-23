@@ -7,9 +7,8 @@ from dotenv import load_dotenv
 
 
 load_dotenv()
-
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")     #TODO recheck functionality
-
+    
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
 
 def create_access_token(data: dict):
     to_encode = data.copy()

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routes import login , register
+from .routes import login , register , chats, message
 from . import model
 from .database import engine
 import uvicorn
@@ -31,6 +31,8 @@ app.add_middleware(
 
 app.include_router(login.router)
 app.include_router(register.router)
+app.include_router(chats.router)
+app.include_router(message.router)
 
 
 
