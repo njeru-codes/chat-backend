@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from ..auth import get_current_user
-from .. import schemas, model , pusher
+from .. import schemas, model , pusher, profanity
 from ..database import get_db
 from sqlalchemy.orm import Session
 
@@ -21,6 +21,10 @@ async def create_msg(message: schemas.NewMessage, user_id:int =Depends(get_curre
             authorized = True
     if not authorized:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="you cant send message to chat")
+
+    if profanity.is_toxic( message.message ):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="you`re message violates community standards")
+    
     new_message = model.Message( **message.dict() )
     db.add( new_message)  #insert user into db
     db.commit()
