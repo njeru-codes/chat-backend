@@ -15,6 +15,10 @@ app = FastAPI()
 origins = [
     "https://heroku.app.com",   #TODO insert frontend domains
     "http://localhost:3000",
+    "https://supertalks.me",
+    "https://supertalks"
+    '[*]',
+    "https://3000-njerucodes-frontendchap-4kq9qoh0e12.ws-eu87.gitpod.io"
     ]    
 
 app.add_middleware(
